@@ -6,7 +6,35 @@ typedef std::function<int (int)> Op;
 
 
 Op compose (size_t n, Op ops[]) {
-    /// Your code goes here.
+    auto comp0 = [] (int x) -> int {
+        return x;
+    };
+
+    auto comp1 = [] (Op fun) -> Op {
+        return [=] (int x) {
+            return fun(x);
+        };
+    };
+
+    auto comp = [] (Op fun1, Op fun2) -> Op {
+        return [=] (int x) {
+            return fun1(fun2(x));
+        };
+    };
+
+    if (n == 0) {
+        return comp0;
+
+    } else if (n == 1) {
+        return comp1(ops[0]);
+
+    } else {
+        auto composed = comp(ops[0], ops[1]);
+        for (size_t i = 2; i < n; ++ i) {
+            composed = comp(composed, ops[i]);
+        };
+        return composed;
+    }    
 }
 
 
