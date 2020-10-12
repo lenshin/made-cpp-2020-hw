@@ -37,7 +37,7 @@ public:
     Matrix(size_t rows, size_t cols);
     Matrix(const Matrix& copy);
 
-    [[noreturn]] Matrix& operator=(const Matrix& a);
+    Matrix& operator=(const Matrix& a);
 
     double& get(size_t row, size_t col);
     const double& get(size_t row, size_t col) const;
@@ -60,6 +60,7 @@ public:
     Matrix operator-() const;
     Matrix operator+() const;
 
+    Matrix minor(const size_t row, const size_t col) const;
     double det() const;
     void transpose();
     Matrix transposed() const;
