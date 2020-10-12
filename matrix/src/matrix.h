@@ -60,7 +60,6 @@ public:
     Matrix operator-() const;
     Matrix operator+() const;
 
-    Matrix minor(const size_t row, const size_t col) const;
     double det() const;
     void transpose();
     Matrix transposed() const;
