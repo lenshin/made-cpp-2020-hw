@@ -1,6 +1,5 @@
 #include <iostream>
 
-
 using namespace std;
 
 struct Memory {
@@ -169,7 +168,9 @@ public:
     }
   }
 
-  static size_t max_size() { return Chunk<T>::N; }
+  static size_t max_size() {
+    return Chunk<T>::N;
+  }
 
   Allocator &operator=(const Allocator &B) {
     this->~Allocator();
@@ -178,7 +179,6 @@ public:
     count = B.count;
     return *this;
   }
-
 
   template<typename ...Args>
   void construct(T* ptr, const Args&&... args) {
